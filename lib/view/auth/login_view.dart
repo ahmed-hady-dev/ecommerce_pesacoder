@@ -1,4 +1,6 @@
 import 'package:ecommerce_pesacoder/constants.dart';
+import 'package:ecommerce_pesacoder/view/widgets/custom_button.dart';
+import 'package:ecommerce_pesacoder/view/widgets/custom_button_social.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_text.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +19,8 @@ class LoginView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(
           top: 20.0,
-          right: 10.0,
-          left: 10.0,
+          right: 16.0,
+          left: 16.0,
         ),
         child: Column(
           children: <Widget>[
@@ -64,6 +66,29 @@ class LoginView extends StatelessWidget {
                   text: 'Forget Password?',
                   fontSize: 14.0,
                   alignment: Alignment.topRight,
+                ),
+                const SizedBox(height: 20.0),
+                CustomButton(
+                  text: 'SIGN IN',
+                  onPress: () {},
+                ),
+                const SizedBox(height: 20.0),
+                CustomText(
+                  text: '-OR-',
+                  fontSize: 14.0,
+                  alignment: Alignment.center,
+                ),
+                const SizedBox(height: 40.0),
+                CustomButtonSocial(
+                  text: 'Sign in with Facebook',
+                  imageName: 'assets/images/facebook.png',
+                  onPress: () {},
+                ),
+                const SizedBox(height: 40.0),
+                CustomButtonSocial(
+                  text: 'Sign in with Google',
+                  imageName: 'assets/images/google.png',
+                  onPress: () {},
                 ),
               ],
             ),
