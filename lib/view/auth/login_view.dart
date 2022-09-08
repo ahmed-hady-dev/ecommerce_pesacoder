@@ -1,11 +1,14 @@
 import 'package:ecommerce_pesacoder/constants.dart';
+import 'package:ecommerce_pesacoder/core/view_model/auth_view_model.dart';
+import 'package:ecommerce_pesacoder/view/auth/register_view.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_button.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_button_social.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_text.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends GetWidget<AuthViewModel> {
   const LoginView({Key? key}) : super(key: key);
 
   @override
@@ -70,7 +73,9 @@ class LoginView extends StatelessWidget {
                 const SizedBox(height: 20.0),
                 CustomButton(
                   text: 'SIGN IN',
-                  onPress: () {},
+                  onPress: () {
+                    Get.to(() => RegisterView());
+                  },
                 ),
                 const SizedBox(height: 20.0),
                 CustomText(
@@ -88,7 +93,9 @@ class LoginView extends StatelessWidget {
                 CustomButtonSocial(
                   text: 'Sign in with Google',
                   imageName: 'assets/images/google.png',
-                  onPress: () {},
+                  onPress: () {
+                    controller.googleSignInMethod();
+                  },
                 ),
               ],
             ),
