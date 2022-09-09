@@ -5,7 +5,7 @@ import 'custom_text.dart';
 class CustomButtonSocial extends StatelessWidget {
   final String text;
   final String imageName;
-  final Function onPress;
+  final Function()? onPress;
 
   CustomButtonSocial({
     required this.text,
@@ -21,7 +21,7 @@ class CustomButtonSocial extends StatelessWidget {
         color: Colors.grey.shade50,
       ),
       child: TextButton(
-        onPressed: onPress(),
+        onPressed: onPress,
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),

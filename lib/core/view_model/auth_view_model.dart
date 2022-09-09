@@ -1,13 +1,19 @@
-import 'package:ecommerce_pesacoder/helper/google_sign_in_helper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ecommerce_pesacoder/helper/social_auth_helper.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthViewModel extends GetxController {
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-  FirebaseAuth _auth = FirebaseAuth.instance;
-
   void googleSignInMethod() async {
-    await GoogleSIgnInHelper.googleSignInMethod(_googleSignIn, _auth);
+    final user = await SocialAuthHelper.signInWithGoogle(context: Get.context!);
+    print(user);
+  }
+
+  void facebookSignInMethod() {
+    final user = SocialAuthHelper.signInWithFacebook(context: Get.context!);
+    print(user);
+  }
+
+  void signOut() async {
+    await SocialAuthHelper.signOut(context: Get.context!);
+    print(SocialAuthHelper.auth.currentUser);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:ecommerce_pesacoder/constants.dart';
 import 'package:ecommerce_pesacoder/core/view_model/auth_view_model.dart';
+import 'package:ecommerce_pesacoder/helper/social_auth_helper.dart';
 import 'package:ecommerce_pesacoder/view/auth/register_view.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_button.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_button_social.dart';
@@ -9,10 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginView extends GetWidget<AuthViewModel> {
-  const LoginView({Key? key}) : super(key: key);
-
+  LoginView({Key? key}) : super(key: key);
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    print('${SocialAuthHelper.auth.currentUser}');
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -49,55 +51,67 @@ class LoginView extends GetWidget<AuthViewModel> {
               fontSize: 14.0,
             ),
             const SizedBox(height: 30.0),
-            Column(
-              children: <Widget>[
-                CustomTextFormField(
-                  text: 'Email',
-                  hint: 'iamdavid@gmail.com',
-                  onSave: (value) {},
-                  validator: (vale) {},
-                ),
-                const SizedBox(height: 40.0),
-                CustomTextFormField(
-                  text: 'Password',
-                  hint: '**********',
-                  onSave: (value) {},
-                  validator: (vale) {},
-                ),
-                const SizedBox(height: 20.0),
-                CustomText(
-                  text: 'Forget Password?',
-                  fontSize: 14.0,
-                  alignment: Alignment.topRight,
-                ),
-                const SizedBox(height: 20.0),
-                CustomButton(
-                  text: 'SIGN IN',
-                  onPress: () {
-                    Get.to(() => RegisterView());
-                  },
-                ),
-                const SizedBox(height: 20.0),
-                CustomText(
-                  text: '-OR-',
-                  fontSize: 14.0,
-                  alignment: Alignment.center,
-                ),
-                const SizedBox(height: 40.0),
-                CustomButtonSocial(
-                  text: 'Sign in with Facebook',
-                  imageName: 'assets/images/facebook.png',
-                  onPress: () {},
-                ),
-                const SizedBox(height: 40.0),
-                CustomButtonSocial(
-                  text: 'Sign in with Google',
-                  imageName: 'assets/images/google.png',
-                  onPress: () {
-                    controller.googleSignInMethod();
-                  },
-                ),
-              ],
+            Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  CustomTextFormField(
+                    text: 'Email',
+                    hint: 'iamdavid@gmail.com',
+                    onSave: (value) {},
+                    validator: (vale) {},
+                  ),
+                  const SizedBox(height: 40.0),
+                  CustomTextFormField(
+                    text: 'Password',
+                    hint: '**********',
+                    onSave: (value) {},
+                    validator: (vale) {},
+                  ),
+                  const SizedBox(height: 20.0),
+                  CustomText(
+                    text: 'Forget Password?',
+                    fontSize: 14.0,
+                    alignment: Alignment.topRight,
+                  ),
+                  const SizedBox(height: 20.0),
+                  CustomButton(
+                    text: 'SIGN IN',
+                    onPress: () {
+                      Get.to(() => RegisterView());
+                    },
+                  ),
+                  const SizedBox(height: 20.0),
+                  CustomText(
+                    text: '-OR-',
+                    fontSize: 14.0,
+                    alignment: Alignment.center,
+                  ),
+                  const SizedBox(height: 40.0),
+                  CustomButtonSocial(
+                    text: 'Sign in with Facebook',
+                    imageName: 'assets/images/facebook.png',
+                    onPress: () {
+                      controller.facebookSignInMethod();
+                    },
+                  ),
+                  const SizedBox(height: 40.0),
+                  CustomButtonSocial(
+                    text: 'Sign in with Google',
+                    imageName: 'assets/images/google.png',
+                    onPress: () {
+                      controller.googleSignInMethod();
+                    },
+                  ),
+                  CustomButtonSocial(
+                    text: 'Log out',
+                    imageName: 'assets/images/google.png',
+                    onPress: () {
+                      controller.signOut();
+                    },
+                  ),
+                ],
+              ),
             ),
           ],
         ),
