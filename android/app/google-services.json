@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "379224027061",
+    "project_id": "ecommerce-pesa-9815a",
+    "storage_bucket": "ecommerce-pesa-9815a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379224027061:android:bb27a73c4f8661baeb33fc",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_pesacoder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379224027061-vbd93vcim8chi8v89jgf8krqr5439t62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTsPtYlsgszoGhZHTCAYHoYG8W4D_ttCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379224027061-vbd93vcim8chi8v89jgf8krqr5439t62.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

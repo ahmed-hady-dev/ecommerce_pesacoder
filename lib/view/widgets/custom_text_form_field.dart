@@ -7,8 +7,8 @@ class CustomTextFormField extends StatelessWidget {
 
   final String? hint;
 
-  final Function onSave;
-  final Function(String?)? validator;
+  final Function(String?) onSave;
+  final Function(String?) validator;
 
   CustomTextFormField({
     this.text,
@@ -28,8 +28,8 @@ class CustomTextFormField extends StatelessWidget {
             color: Colors.grey.shade900,
           ),
           TextFormField(
-            onSaved: (newValue) => onSave,
-            validator: (value) => validator!(value),
+            onSaved: (newValue) => onSave(newValue),
+            validator: (value) => validator(value),
             decoration: InputDecoration(
               hintText: hint,
               hintStyle: TextStyle(
