@@ -71,20 +71,16 @@ class AuthViewModel extends GetxController {
   }
 
   void facebookSignInMethod() async {
-    final LoginResult result = await FacebookAuth.instance.login();
     try {
-      final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(result.accessToken!.toString());
+      final LoginResult result = await FacebookAuth.instance.login(permissions: ['email', 'public_profile']);
 
-      await _auth.signInWithCredential(facebookAuthCredential).then((user) {
-        saveUser(user);
-      });
-    } on FirebaseAuthException catch (e) {
-      Get.snackbar(
-        'Error login account',
-        e.message.toString(),
-        colorText: Colors.black,
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      if (result.status == LoginStatus.success) {
+        final AccessToken accessToken = result.accessToken!;
+        final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(accessToken.token);
+        final UserCredential userCredential = await _auth.signInWithCredential(facebookAuthCredential);
+        saveUser(userCredential);
+        Get.offAll(HomeView());
+      }
     } catch (e) {
       print(e.toString());
       Get.snackbar(
@@ -100,6 +96,9 @@ class AuthViewModel extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email!.trim(), password: password!.trim());
       Get.offAll(HomeView());
+      email = null;
+      name = null;
+      password = null;
     } on FirebaseAuthException catch (e) {
       Get.snackbar(
         'Error login account',
@@ -123,7 +122,9 @@ class AuthViewModel extends GetxController {
       await _auth.createUserWithEmailAndPassword(email: email!.trim(), password: password!.trim()).then((user) async {
         saveUser(user);
       });
-
+      email = null;
+      name = null;
+      password = null;
       Get.offAll(HomeView());
     } catch (e) {
       print(e.toString());
@@ -140,8 +141,8 @@ class AuthViewModel extends GetxController {
     await FireStoreUser().addUserToFireStore(UserModel(
       userId: user.user!.uid,
       email: user.user!.email,
-      name: name == null ? user.user!.displayName : name,
-      pic: '',
+      name: name ?? user.user!.displayName,
+      pic: user.user!.photoURL ?? '',
     ));
   }
 

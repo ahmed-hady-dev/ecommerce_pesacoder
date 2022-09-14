@@ -23,6 +23,11 @@ class HomeView extends GetWidget<AuthViewModel> {
                   Get.offAll(() => LoginView());
                 },
                 child: Text('sign out', style: const TextStyle())),
+            TextButton(
+                onPressed: () async {
+                  print(Get.find<AuthViewModel>().user);
+                },
+                child: Text('print user', style: const TextStyle())),
             Text(Get.find<AuthViewModel>().user.toString()),
           ],
         ),
