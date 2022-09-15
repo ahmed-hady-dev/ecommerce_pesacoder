@@ -12,22 +12,10 @@ import 'helper/binding.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // Widget? home;
-  // FirebaseAuth.instance.userChanges().listen((user) {
-  //   if (user == null) {
-  //     home = LoginView();
-  //   } else {
-  //     home = const HomeView();
-  //   }
-  //   home ??= LoginView();
-  // });
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // final Widget home;
-  //
-  // const MyApp({super.key, required this.home});
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

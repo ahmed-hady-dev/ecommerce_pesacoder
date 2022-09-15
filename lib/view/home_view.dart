@@ -1,6 +1,7 @@
 import 'package:ecommerce_pesacoder/core/view_model/auth_view_model.dart';
 import 'package:ecommerce_pesacoder/view/widgets/category_list_view.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_text.dart';
+import 'package:ecommerce_pesacoder/view/widgets/home_bottom_navigation_bar.dart';
 import 'package:ecommerce_pesacoder/view/widgets/products_list_view.dart';
 import 'package:ecommerce_pesacoder/view/widgets/search_text_field.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class HomeView extends GetWidget<AuthViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: HomeBottomNavigationBar(),
       body: Padding(
         padding: const EdgeInsets.only(top: 100.0, right: 16.0, left: 16.0),
         child: Column(
