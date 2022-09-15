@@ -1,4 +1,5 @@
-import 'package:ecommerce_pesacoder/view/home_view.dart';
+import 'package:ecommerce_pesacoder/core/view_model/home_view_model.dart';
+import 'package:ecommerce_pesacoder/view/widgets/home_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,12 @@ class ControlView extends GetWidget<AuthViewModel> {
       if ((Get.find<AuthViewModel>().user == null)) {
         return LoginView();
       } else {
-        return HomeView();
+        return GetBuilder<HomeViewModel>(builder: (controller) {
+          return Scaffold(
+            bottomNavigationBar: HomeBottomNavigationBar(),
+            body: controller.viewsList[controller.navigatorValue],
+          );
+        });
       }
     });
   }
