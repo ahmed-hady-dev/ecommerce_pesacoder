@@ -1,21 +1,22 @@
-import 'package:ecommerce_pesacoder/core/view_model/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../core/view_model/control_view_model.dart';
 
 class HomeBottomNavigationBar extends StatelessWidget {
   const HomeBottomNavigationBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeViewModel>(
-        init: HomeViewModel(),
+    return GetBuilder<ControlViewModel>(
+        init: ControlViewModel(),
         builder: (controller) {
           return BottomNavigationBar(
             elevation: 0.0,
             selectedItemColor: Colors.black,
             backgroundColor: Colors.grey.shade50,
             currentIndex: controller.navigatorValue,
-            onTap: (index) => controller.changeSelectedValue(selectedValue: index),
+            onTap: (index) => controller.changeSelectedValue(index),
             items: [
               BottomNavigationBarItem(
                 activeIcon: Padding(
