@@ -90,7 +90,7 @@ class DetailsView extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -111,7 +111,6 @@ class DetailsView extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(20),
                   width: 180,
-                  height: 100,
                   child: CustomButton(
                     onPress: () {},
                     text: 'Add',
