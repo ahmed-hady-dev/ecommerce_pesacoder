@@ -9,14 +9,6 @@ import 'package:get/get.dart';
 
 class HomeView extends GetWidget<HomeViewModel> {
   HomeView({Key? key}) : super(key: key);
-  final List<String> names = [
-    's',
-    's',
-    's',
-    's',
-    's',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(
