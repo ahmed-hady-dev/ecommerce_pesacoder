@@ -2,7 +2,7 @@ import 'package:ecommerce_pesacoder/constants.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_button.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/get.dart';
 
 import '../core/view_model/cart_view_model.dart';
 
@@ -16,7 +16,8 @@ class CartView extends StatelessWidget {
         children: [
           Expanded(
             child: GetBuilder<CartViewModel>(
-              init: CartViewModel(),
+              init: Get.put(CartViewModel()),
+              // init: Get.find(),
               builder: (controller) {
                 return ListView.separated(
                   itemCount: controller.cartProductModelList.length,
@@ -59,21 +60,25 @@ class CartView extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
                                         IconButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              controller.increaseQuantity(index);
+                                            },
                                             icon: const Icon(
                                               Icons.add,
                                               color: Colors.black,
                                             )),
                                         const SizedBox(width: 20.0),
                                         CustomText(
-                                          text: '1',
+                                          text: controller.cartProductModelList[index].quantity.toString(),
                                           alignment: Alignment.center,
                                           color: Colors.black,
                                           fontSize: 20.0,
                                         ),
                                         const SizedBox(width: 20.0),
                                         IconButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              controller.decreaseQuantity(index);
+                                            },
                                             icon: const Icon(
                                               Icons.remove,
                                               color: Colors.black,
@@ -104,10 +109,15 @@ class CartView extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     const SizedBox(height: 15.0),
-                    CustomText(
-                      text: '\$ 2000',
-                      fontSize: 18,
-                      color: Constants.primaryColor,
+                    GetBuilder<CartViewModel>(
+                      init: Get.find(),
+                      builder: (controller) {
+                        return CustomText(
+                          text: '\$ ${controller.totalPrice}',
+                          fontSize: 18,
+                          color: Constants.primaryColor,
+                        );
+                      },
                     ),
                   ],
                 ),

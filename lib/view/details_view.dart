@@ -4,6 +4,8 @@ import 'package:ecommerce_pesacoder/model/cart_product_model.dart';
 import 'package:ecommerce_pesacoder/model/product_model.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import 'widgets/custom_button.dart';
@@ -113,7 +115,7 @@ class DetailsView extends StatelessWidget {
                   ],
                 ),
                 GetBuilder<CartViewModel>(
-                  init: CartViewModel(),
+                  init: Get.find(),
                   builder: (controller) {
                     return Container(
                       padding: EdgeInsets.all(20),
@@ -128,6 +130,7 @@ class DetailsView extends StatelessWidget {
                             name: productModel.name,
                             image: productModel.image,
                             price: productModel.price,
+                            productId: productModel.productId,
                             quantity: 1,
                           ));
                         },

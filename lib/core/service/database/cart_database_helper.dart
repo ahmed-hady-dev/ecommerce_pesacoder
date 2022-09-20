@@ -24,6 +24,7 @@ class CartDatabaseHelper {
       ${Constants.columnName} TEXT NOT NULL,
       ${Constants.columnImage} TEXT NOT NULL,
       ${Constants.columnPrice} TEXT NOT NULL,
+      ${Constants.columnProductId} TEXT NOT NULL,
       ${Constants.columnQuantity} INTEGER NOT NULL
       )
       ''');
@@ -45,6 +46,12 @@ class CartDatabaseHelper {
       model.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+  }
+
+  updateProduct(CartProductModel model) async {
+    var dbClient = await database;
+    return await dbClient.update(Constants.tableCartProduct, model.toJson(),
+        where: '${Constants.columnProductId} = ?', whereArgs: [model.productId]);
   }
 
   clearDatabase() async {
