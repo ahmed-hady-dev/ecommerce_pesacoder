@@ -1,13 +1,17 @@
 import 'package:ecommerce_pesacoder/constants.dart';
+import 'package:ecommerce_pesacoder/core/view_model/cart_view_model.dart';
+import 'package:ecommerce_pesacoder/model/cart_product_model.dart';
 import 'package:ecommerce_pesacoder/model/product_model.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import 'widgets/custom_button.dart';
 
 class DetailsView extends StatelessWidget {
   const DetailsView({Key? key, required this.productModel}) : super(key: key);
   final ProductModel productModel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,13 +112,29 @@ class DetailsView extends StatelessWidget {
                     )
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.all(20),
-                  width: 180,
-                  child: CustomButton(
-                    onPress: () {},
-                    text: 'Add',
-                  ),
+                GetBuilder<CartViewModel>(
+                  init: CartViewModel(),
+                  builder: (controller) {
+                    return Container(
+                      padding: EdgeInsets.all(20),
+                      width: 180,
+                      child: CustomButton(
+                        // onPress: () async {
+                        //   await controller.deleteDatabase();
+                        //   print(controller.cartProductModelList.length);
+                        // },
+                        onPress: () async {
+                          await controller.addProduct(CartProductModel(
+                            name: productModel.name,
+                            image: productModel.image,
+                            price: productModel.price,
+                            quantity: 1,
+                          ));
+                        },
+                        text: 'Add',
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
