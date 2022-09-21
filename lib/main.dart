@@ -1,4 +1,5 @@
 import 'package:ecommerce_pesacoder/core/view_model/cart_view_model.dart';
+import 'package:ecommerce_pesacoder/helper/get_storage_cache_helper.dart';
 import 'package:ecommerce_pesacoder/view/control_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,8 @@ import 'helper/binding.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  Get.put(CartViewModel());
+  CacheHelper.init();
+  Get.put(CartViewModel(), permanent: true);
   runApp(MyApp());
 }
 

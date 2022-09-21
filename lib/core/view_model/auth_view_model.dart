@@ -1,11 +1,12 @@
+import 'package:ecommerce_pesacoder/helper/get_storage_cache_helper.dart';
 import 'package:ecommerce_pesacoder/model/user_model.dart';
+import 'package:ecommerce_pesacoder/view/control_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../view/home_view.dart';
 import '../service/firestore_user.dart';
 
 class AuthViewModel extends GetxController {
@@ -50,7 +51,7 @@ class AuthViewModel extends GetxController {
 
       await _auth.signInWithCredential(credential).then((user) {
         saveUser(user);
-        Get.offAll(HomeView());
+        Get.offAll(ControlView());
       });
     } on FirebaseAuthException catch (e) {
       Get.snackbar(
@@ -79,7 +80,7 @@ class AuthViewModel extends GetxController {
         final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(accessToken.token);
         final UserCredential userCredential = await _auth.signInWithCredential(facebookAuthCredential);
         saveUser(userCredential);
-        Get.offAll(HomeView());
+        Get.offAll(ControlView());
       }
     } catch (e) {
       print(e.toString());
@@ -94,8 +95,14 @@ class AuthViewModel extends GetxController {
 
   void signInWithEmailAndPassword() async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email!.trim(), password: password!.trim());
-      Get.offAll(HomeView());
+      await _auth.signInWithEmailAndPassword(email: email!.trim(), password: password!.trim()).then((value) async {
+        await FireStoreUser().getCurrentUser(uid: value.user!.uid).then(
+              (value) => setUser(
+                userModel: UserModel.fromJson(value.data() as Map<dynamic, dynamic>),
+              ),
+            );
+      });
+      Get.offAll(ControlView());
       email = null;
       name = null;
       password = null;
@@ -125,7 +132,7 @@ class AuthViewModel extends GetxController {
       email = null;
       name = null;
       password = null;
-      Get.offAll(HomeView());
+      Get.offAll(ControlView());
     } catch (e) {
       print(e.toString());
       Get.snackbar(
@@ -138,15 +145,17 @@ class AuthViewModel extends GetxController {
   }
 
   void saveUser(UserCredential user) async {
-    await FireStoreUser().addUserToFireStore(UserModel(
+    UserModel userModel = UserModel(
       userId: user.user!.uid,
       email: user.user!.email,
       name: name ?? user.user!.displayName,
       pic: user.user!.photoURL ?? '',
-    ));
+    );
+    await FireStoreUser().addUserToFireStore(userModel);
+    await setUser(userModel: userModel);
   }
 
-  Future<void> signOut() async {
-    await _auth.signOut();
+  setUser({required UserModel userModel}) async {
+    await CacheHelper.cacheUser(userModel: userModel);
   }
 }

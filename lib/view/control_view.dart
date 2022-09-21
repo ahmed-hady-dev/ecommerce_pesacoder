@@ -13,12 +13,14 @@ class ControlView extends GetWidget<AuthViewModel> {
       if ((Get.find<AuthViewModel>().user == null)) {
         return LoginView();
       } else {
-        return GetBuilder<ControlViewModel>(builder: (controller) {
-          return Scaffold(
-            bottomNavigationBar: HomeBottomNavigationBar(),
-            body: controller.currentScreen,
-          );
-        });
+        return GetBuilder<ControlViewModel>(
+            init: ControlViewModel(),
+            builder: (controller) {
+              return Scaffold(
+                bottomNavigationBar: HomeBottomNavigationBar(),
+                body: controller.currentScreen,
+              );
+            });
       }
     });
   }
