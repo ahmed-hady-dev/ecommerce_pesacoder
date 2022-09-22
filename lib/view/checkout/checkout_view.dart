@@ -108,20 +108,44 @@ class CheckOutView extends StatelessWidget {
                 : controller.pages == Pages.addAddress
                     ? const AddAddress()
                     : const SummaryView(),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Container(
-                padding: const EdgeInsets.all(24),
-                width: 200.0,
-                height: 100.0,
-                child: CustomButton(
-                  text: 'Next',
-                  onPress: () {
-                    print(controller.index);
-                    controller.changeIndex(i: controller.index + 1);
-                  },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                controller.index == 0
+                    ? Container()
+                    : Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12.0),
+                          width: MediaQuery.of(context).size.width * 0.45,
+                          height: 100.0,
+                          child: CustomButton(
+                            text: 'Back',
+                            color: Colors.white,
+                            textColor: Colors.black,
+                            onPress: () {
+                              print(controller.index);
+                              controller.changeIndex(i: controller.index - 1);
+                            },
+                          ),
+                        ),
+                      ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12.0),
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    height: 100.0,
+                    child: CustomButton(
+                      text: 'Next',
+                      onPress: () {
+                        print(controller.index);
+                        controller.changeIndex(i: controller.index + 1);
+                      },
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),

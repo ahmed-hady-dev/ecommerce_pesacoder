@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import '../../helper/enum.dart';
 
 class CheckOutViewModel extends GetxController {
+  String? street1, street2, city, state, country;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   int _index = 0;
   int get index => _index;
 
@@ -30,15 +32,28 @@ class CheckOutViewModel extends GetxController {
   }
 
   void changeIndex({required int i}) {
-    _index = i;
-    if (_index == 1) {
-      _pages = Pages.addAddress;
-    } else if (_index == 2) {
-      _pages = Pages.summary;
-    } else if (_index == 3) {
-      _index = 0;
+    if (i == 0 || i < 0) {
       _pages = Pages.deliveryTime;
-      Get.to(const ControlView());
+      _index = i;
+    } else if (i == 1) {
+      _pages = Pages.addAddress;
+      _index = i;
+    } else if (i == 2) {
+      formKey.currentState!.save();
+      if (formKey.currentState!.validate()) {
+        _pages = Pages.summary;
+        _index = i;
+      }
+    } else if (i == 3) {
+      _pages = Pages.deliveryTime;
+      street1 = null;
+      street2 = null;
+      city = null;
+      state = null;
+      country = null;
+      Get.off(() => const ControlView());
+      i = 0;
+      _index = i;
     }
     update();
   }
