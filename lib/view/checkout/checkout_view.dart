@@ -1,5 +1,7 @@
+import 'package:ecommerce_pesacoder/helper/enum.dart';
 import 'package:ecommerce_pesacoder/view/checkout/delevery_time.dart';
 import 'package:ecommerce_pesacoder/view/checkout/summary.dart';
+import 'package:ecommerce_pesacoder/view/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:status_change/status_change.dart';
@@ -35,9 +37,10 @@ class CheckOutView extends StatelessWidget {
                   connectorTheme: const ConnectorThemeData(space: 1.0, thickness: 1.0),
                 ),
                 builder: StatusChangeTileBuilder.connected(
+                  itemCount: controller.processes.length,
                   itemWidth: (_) => MediaQuery.of(context).size.width / controller.processes.length,
                   contentWidgetBuilder: (context, index) {
-                    return Container();
+                    return const SizedBox();
                   },
                   nameWidgetBuilder: (context, index) {
                     return Padding(
@@ -97,24 +100,30 @@ class CheckOutView extends StatelessWidget {
                       return null;
                     }
                   },
-                  itemCount: controller.processes.length,
                 ),
               ),
             ),
-            controller.pages == Pages.DeliveryTime
+            controller.pages == Pages.deliveryTime
                 ? DeliveryTime()
-                : controller.pages == Pages.AddAddress
-                    ? AddAddress()
+                : controller.pages == Pages.addAddress
+                    ? const AddAddress()
                     : const SummaryView(),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                padding: const EdgeInsets.all(24),
+                width: 200.0,
+                height: 100.0,
+                child: CustomButton(
+                  text: 'Next',
+                  onPress: () {
+                    print(controller.index);
+                    controller.changeIndex(i: controller.index + 1);
+                  },
+                ),
+              ),
+            ),
           ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: inProgressColor,
-          child: const Icon(Icons.skip_next),
-          onPressed: () {
-            controller.changeIndex(i: controller.index + 1);
-            print(controller.index);
-          },
         ),
       );
     });
