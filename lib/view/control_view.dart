@@ -7,6 +7,8 @@ import '../core/view_model/control_view_model.dart';
 import 'auth/login_view.dart';
 
 class ControlView extends GetWidget<AuthViewModel> {
+  const ControlView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -17,7 +19,7 @@ class ControlView extends GetWidget<AuthViewModel> {
             init: ControlViewModel(),
             builder: (controller) {
               return Scaffold(
-                bottomNavigationBar: HomeBottomNavigationBar(),
+                bottomNavigationBar: const HomeBottomNavigationBar(),
                 body: controller.currentScreen,
               );
             });

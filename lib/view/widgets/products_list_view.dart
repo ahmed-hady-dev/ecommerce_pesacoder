@@ -33,7 +33,7 @@ class ProductsListView extends StatelessWidget {
                       decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(50.0)),
                       child: Column(
                         children: <Widget>[
-                          Container(
+                          SizedBox(
                               height: 220.0,
                               width: MediaQuery.of(context).size.width * 0.4,
                               child: Image.network(

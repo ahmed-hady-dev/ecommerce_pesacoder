@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartViewModel extends GetxController {
-  ValueNotifier<bool> _loading = ValueNotifier(false);
+  final ValueNotifier<bool> _loading = ValueNotifier(false);
   ValueNotifier<bool> get loading => _loading;
 
   List<CartProductModel> _cartProductModelList = [];
@@ -22,7 +22,7 @@ class CartViewModel extends GetxController {
     _loading.value = true;
     var dbHelper = CartDatabaseHelper.db;
     _cartProductModelList = await dbHelper.getAllProduct();
-    print('_cartProductModelList.length is =  ' + _cartProductModelList.length.toString());
+    print('_cartProductModelList.length is =  ${_cartProductModelList.length}');
     _loading.value = false;
     getTotalPrice();
     update();
@@ -31,7 +31,7 @@ class CartViewModel extends GetxController {
   getTotalPrice() {
     for (int i = 0; i < _cartProductModelList.length; i++) {
       _totalPrice += double.parse(_cartProductModelList[i].price!) * _cartProductModelList[i].quantity!;
-      print('_totalPrice = ' + _totalPrice.toString());
+      print('_totalPrice = $_totalPrice');
       update();
     }
   }
@@ -46,7 +46,7 @@ class CartViewModel extends GetxController {
     await dbHelper.insert(cartProductModel);
     _cartProductModelList.add(cartProductModel);
     _totalPrice += double.parse(cartProductModel.price!) * cartProductModel.quantity!;
-    print('added successfully =  ' + await cartProductModel.toString());
+    print('added successfully =  ${cartProductModel.toString()}');
     update();
   }
 

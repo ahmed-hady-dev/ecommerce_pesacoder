@@ -10,12 +10,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../service/firestore_user.dart';
 
 class AuthViewModel extends GetxController {
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   String? email, password, name;
 
-  Rxn<User> _user = Rxn<User>();
+  final Rxn<User> _user = Rxn<User>();
 
   User? get user => _user.value;
 
@@ -24,18 +24,6 @@ class AuthViewModel extends GetxController {
     // TODO: implement onInit
     super.onInit();
     _user.bindStream(_auth.authStateChanges());
-  }
-
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
   }
 
   void googleSignInMethod() async {

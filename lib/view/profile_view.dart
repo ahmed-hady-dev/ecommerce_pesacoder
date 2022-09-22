@@ -14,7 +14,7 @@ class ProfileView extends StatelessWidget {
       init: ProfileViewModel(),
       builder: (controller) {
         return controller.loading.value
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Padding(
                 padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 12.0),
                 child: SingleChildScrollView(
@@ -32,9 +32,9 @@ class ProfileView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(100.0),
                               image: DecorationImage(
                                 image: controller.userModel == null
-                                    ? AssetImage('assets/images/Avatar.png')
+                                    ? const AssetImage('assets/images/Avatar.png')
                                     : controller.userModel!.pic == ''
-                                        ? AssetImage('assets/images/Avatar.png')
+                                        ? const AssetImage('assets/images/Avatar.png')
                                         : NetworkImage(controller.userModel!.pic.toString()) as ImageProvider,
                                 fit: BoxFit.fill,
                               ),

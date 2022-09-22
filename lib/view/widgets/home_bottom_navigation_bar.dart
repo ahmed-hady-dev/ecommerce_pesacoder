@@ -17,8 +17,8 @@ class HomeBottomNavigationBar extends StatelessWidget {
         onTap: (index) => controller.changeSelectedValue(index),
         items: [
           BottomNavigationBarItem(
-            activeIcon: Padding(
-              padding: const EdgeInsets.only(top: 25.0),
+            activeIcon: const Padding(
+              padding: EdgeInsets.only(top: 25.0),
               child: Text('Explore'),
             ),
             label: '',
@@ -32,8 +32,8 @@ class HomeBottomNavigationBar extends StatelessWidget {
             ),
           ),
           BottomNavigationBarItem(
-            activeIcon: Padding(
-              padding: const EdgeInsets.only(top: 25.0),
+            activeIcon: const Padding(
+              padding: EdgeInsets.only(top: 25.0),
               child: Text('Cart'),
             ),
             label: '',
@@ -47,8 +47,8 @@ class HomeBottomNavigationBar extends StatelessWidget {
             ),
           ),
           BottomNavigationBarItem(
-            activeIcon: Padding(
-              padding: const EdgeInsets.only(top: 25.0),
+            activeIcon: const Padding(
+              padding: EdgeInsets.only(top: 25.0),
               child: Text('Account'),
             ),
             label: '',

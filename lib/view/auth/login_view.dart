@@ -63,7 +63,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                       hint: 'iamdavid@gmail.com',
                       onSave: (value) {
                         controller.email = value;
-                        print('email value' + value!);
+                        print('email value${value!}');
                         print(value);
                       },
                       validator: (value) {
@@ -79,7 +79,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                       hint: '**********',
                       onSave: (value) {
                         controller.password = value;
-                        print('password value' + value!);
+                        print('password value${value!}');
                       },
                       validator: (value) {
                         if (value == null) {

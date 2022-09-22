@@ -46,7 +46,7 @@ class DetailsView extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomText(
+                              const CustomText(
                                 text: 'Size',
                               ),
                               CustomText(
@@ -65,7 +65,7 @@ class DetailsView extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CustomText(
+                              const CustomText(
                                 text: 'Color',
                               ),
                               Container(
@@ -84,7 +84,7 @@ class DetailsView extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 15.0),
-                    CustomText(text: 'Details', fontSize: 26.0),
+                    const CustomText(text: 'Details', fontSize: 26.0),
                     const SizedBox(height: 20.0),
                     CustomText(text: productModel.description.toString(), fontSize: 18.0, height: 2),
                   ],
@@ -99,13 +99,13 @@ class DetailsView extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    CustomText(
+                    const CustomText(
                       text: "PRICE ",
                       fontSize: 22,
                       color: Colors.grey,
                     ),
                     CustomText(
-                      text: ' \$' + productModel.price.toString(),
+                      text: ' \$${productModel.price}',
                       color: Constants.primaryColor,
                       fontSize: 18,
                     )
@@ -115,7 +115,7 @@ class DetailsView extends StatelessWidget {
                   // init: Get.find(),
                   builder: (controller) {
                     return Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       width: 180,
                       child: CustomButton(
                         // onPress: () async {

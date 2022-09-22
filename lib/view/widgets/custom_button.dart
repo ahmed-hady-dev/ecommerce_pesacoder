@@ -10,18 +10,19 @@ class CustomButton extends StatelessWidget {
 
   final Function()? onPress;
 
-  CustomButton({
+  const CustomButton({
+    Key? key,
     required this.onPress,
     this.text = 'Write text ',
     this.color = Constants.primaryColor,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        padding: EdgeInsets.all(18),
+        padding: const EdgeInsets.all(18),
         primary: color,
         elevation: 0.0,
       ),

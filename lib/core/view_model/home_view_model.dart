@@ -9,13 +9,13 @@ class HomeViewModel extends GetxController {
     getCategory();
     getBestSellingProducts();
   }
-  ValueNotifier<bool> _loading = ValueNotifier(false);
+  final ValueNotifier<bool> _loading = ValueNotifier(false);
   ValueNotifier<bool> get loading => _loading;
 
-  List<CategoryModel> _categoryModelList = [];
+  final List<CategoryModel> _categoryModelList = [];
   List<CategoryModel> get categoryModelList => _categoryModelList;
 
-  List<ProductModel> _productModelList = [];
+  final List<ProductModel> _productModelList = [];
   List<ProductModel> get productModelList => _productModelList;
 
   Future<void> getCategory() async {

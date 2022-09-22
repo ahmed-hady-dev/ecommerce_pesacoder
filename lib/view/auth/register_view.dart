@@ -2,23 +2,21 @@ import 'package:ecommerce_pesacoder/core/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants.dart';
 import '../widgets/custom_button.dart';
-import '../widgets/custom_button_social.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/custom_text_form_field.dart';
 
 class RegisterView extends GetWidget<AuthViewModel> {
-  RegisterView({Key? key}) : super(key: key);
+  const RegisterView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
+        leading: const BackButton(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -29,14 +27,14 @@ class RegisterView extends GetWidget<AuthViewModel> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              CustomText(
+              const CustomText(
                 text: 'SignUp',
                 color: Colors.black,
                 fontSize: 30.0,
               ),
               const SizedBox(height: 24),
               Form(
-                key: _formKey,
+                key: formKey,
                 child: Column(
                   children: <Widget>[
                     CustomTextFormField(
@@ -44,7 +42,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
                       hint: 'Pesa',
                       onSave: (value) {
                         controller.name = value;
-                        print('name value' + value!);
+                        print('name value${value!}');
                         print(value);
                       },
                       validator: (value) {
@@ -60,7 +58,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
                       hint: 'iamdavid@gmail.com',
                       onSave: (value) {
                         controller.email = value;
-                        print('email value' + value!);
+                        print('email value${value!}');
                         print(value);
                       },
                       validator: (value) {
@@ -76,7 +74,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
                       hint: '**********',
                       onSave: (value) {
                         controller.password = value;
-                        print('password value' + value!);
+                        print('password value${value!}');
                       },
                       validator: (value) {
                         if (value == null) {
@@ -86,7 +84,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
                       },
                     ),
                     const SizedBox(height: 20.0),
-                    CustomText(
+                    const CustomText(
                       text: 'Forget Password?',
                       fontSize: 14.0,
                       alignment: Alignment.topRight,
@@ -95,8 +93,8 @@ class RegisterView extends GetWidget<AuthViewModel> {
                     CustomButton(
                       text: 'SIGN UP',
                       onPress: () {
-                        _formKey.currentState!.save();
-                        if (_formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        if (formKey.currentState!.validate()) {
                           controller.createAccountWithEmailAndPassword();
                         }
                       },

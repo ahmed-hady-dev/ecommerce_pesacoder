@@ -7,11 +7,12 @@ class CustomButtonSocial extends StatelessWidget {
   final String imageName;
   final Function()? onPress;
 
-  CustomButtonSocial({
+  const CustomButtonSocial({
+    Key? key,
     required this.text,
     required this.imageName,
     required this.onPress,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,9 @@ class CustomButtonSocial extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Image.asset(imageName),
-            SizedBox(width: 100),
+            const SizedBox(width: 100),
             CustomText(
               text: text,
             ),

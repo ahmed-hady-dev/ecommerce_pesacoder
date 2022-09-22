@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeView extends GetWidget<HomeViewModel> {
-  HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(
@@ -16,22 +16,22 @@ class HomeView extends GetWidget<HomeViewModel> {
         autoRemove: false,
         builder: (controller) {
           return controller.loading.value
-              ? Center(child: CircularProgressIndicator(color: Constants.primaryColor))
+              ? const Center(child: CircularProgressIndicator(color: Constants.primaryColor))
               : Scaffold(
                   body: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 64.0, right: 16.0, left: 16.0),
                       child: Column(
                         children: [
-                          SearchTextField(),
+                          const SearchTextField(),
                           const SizedBox(height: 30.0),
-                          CustomText(text: 'Categories'),
+                          const CustomText(text: 'Categories'),
                           const SizedBox(height: 30.0),
-                          CategoryListView(),
+                          const CategoryListView(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              CustomText(
+                              const CustomText(
                                 text: 'Best Selling',
                                 fontSize: 18.0,
                               ),
@@ -39,7 +39,7 @@ class HomeView extends GetWidget<HomeViewModel> {
                                 onPressed: () async {
                                   await controller.getCategory();
                                 },
-                                child: CustomText(
+                                child: const CustomText(
                                   text: 'See all',
                                   fontSize: 16.0,
                                 ),
@@ -47,7 +47,7 @@ class HomeView extends GetWidget<HomeViewModel> {
                             ],
                           ),
                           const SizedBox(height: 30.0),
-                          ProductsListView(),
+                          const ProductsListView(),
                         ],
                       ),
                     ),

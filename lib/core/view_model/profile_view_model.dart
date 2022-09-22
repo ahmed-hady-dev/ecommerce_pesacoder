@@ -9,9 +9,10 @@ class ProfileViewModel extends GetxController {
   UserModel? _userModel;
   UserModel? get userModel => _userModel;
 
-  ValueNotifier<bool> _loading = ValueNotifier(false);
+  final ValueNotifier<bool> _loading = ValueNotifier(false);
   ValueNotifier<bool> get loading => _loading;
 
+  @override
   void onInit() {
     super.onInit();
     getCurrentUser();
@@ -19,7 +20,7 @@ class ProfileViewModel extends GetxController {
 
   Future<void> getCurrentUser() async {
     _loading.value = true;
-    _userModel = await CacheHelper.getUserInfo;
+    _userModel = CacheHelper.getUserInfo;
     _loading.value = false;
     update();
   }
