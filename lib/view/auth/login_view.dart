@@ -33,14 +33,14 @@ class LoginView extends GetWidget<AuthViewModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  CustomText(
+                  const CustomText(
                     text: 'Welcome,',
                     color: Colors.black,
                     fontSize: 30.0,
                   ),
                   TextButton(
-                      onPressed: () => Get.to(() => RegisterView()),
-                      child: CustomText(
+                      onPressed: () => Get.to(() => const RegisterView()),
+                      child: const CustomText(
                         text: 'SignUp',
                         color: Constants.primaryColor,
                         fontSize: 18.0,
@@ -48,7 +48,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                 ],
               ),
               const SizedBox(height: 10),
-              CustomText(
+              const CustomText(
                 text: 'Sign in to Continue',
                 color: Colors.grey,
                 fontSize: 14.0,
@@ -89,7 +89,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                       },
                     ),
                     const SizedBox(height: 20.0),
-                    CustomText(
+                    const CustomText(
                       text: 'Forget Password?',
                       fontSize: 14.0,
                       alignment: Alignment.topRight,
@@ -105,7 +105,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                       },
                     ),
                     const SizedBox(height: 20.0),
-                    CustomText(
+                    const CustomText(
                       text: '-OR-',
                       fontSize: 14.0,
                       alignment: Alignment.center,

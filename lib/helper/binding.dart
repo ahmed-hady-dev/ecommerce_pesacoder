@@ -1,3 +1,4 @@
+import 'package:ecommerce_pesacoder/core/view_model/checkout_view_model.dart';
 import 'package:ecommerce_pesacoder/core/view_model/home_view_model.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ class Binding extends Bindings {
     Get.lazyPut(() => ControlViewModel(), fenix: true);
     Get.lazyPut(() => HomeViewModel(), fenix: true);
     Get.lazyPut(() => ProfileViewModel(), fenix: true);
+    Get.lazyPut(() => CheckOutViewModel(), fenix: true);
     // Get.lazyPut(() => CartViewModel(), fenix: true);
   }
 }

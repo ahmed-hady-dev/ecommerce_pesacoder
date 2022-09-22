@@ -1,4 +1,5 @@
 import 'package:ecommerce_pesacoder/constants.dart';
+import 'package:ecommerce_pesacoder/view/checkout/checkout_view.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_button.dart';
 import 'package:ecommerce_pesacoder/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -143,7 +144,9 @@ class CartView extends StatelessWidget {
                                     width: 180.0,
                                     height: 100,
                                     child: CustomButton(
-                                      onPress: () {},
+                                      onPress: () {
+                                        Get.to(const CheckOutView());
+                                      },
                                       text: 'CHECKOUT',
                                     ),
                                   ),

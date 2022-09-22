@@ -24,6 +24,9 @@ class AuthViewModel extends GetxController {
     // TODO: implement onInit
     super.onInit();
     _user.bindStream(_auth.authStateChanges());
+    if (_auth.currentUser != null) {
+      getCurrentUserData(uid: _auth.currentUser!.uid);
+    }
   }
 
   void googleSignInMethod() async {
@@ -84,11 +87,7 @@ class AuthViewModel extends GetxController {
   void signInWithEmailAndPassword() async {
     try {
       await _auth.signInWithEmailAndPassword(email: email!.trim(), password: password!.trim()).then((value) async {
-        await FireStoreUser().getCurrentUser(uid: value.user!.uid).then(
-              (value) => setUser(
-                userModel: UserModel.fromJson(value.data() as Map<dynamic, dynamic>),
-              ),
-            );
+        getCurrentUserData(uid: value.user!.uid);
       });
       Get.offAll(ControlView());
       email = null;
@@ -141,6 +140,14 @@ class AuthViewModel extends GetxController {
     );
     await FireStoreUser().addUserToFireStore(userModel);
     await setUser(userModel: userModel);
+  }
+
+  void getCurrentUserData({required String uid}) async {
+    await FireStoreUser().getCurrentUser(uid: uid).then(
+          (value) => setUser(
+            userModel: UserModel.fromJson(value.data() as Map<dynamic, dynamic>),
+          ),
+        );
   }
 
   setUser({required UserModel userModel}) async {

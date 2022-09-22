@@ -9,3 +9,13 @@ class Constants {
   static const String columnProductId = 'productId';
   static const String columnPrice = 'price';
 }
+
+const kTileHeight = 50.0;
+const inProgressColor = Colors.black87;
+const todoColor = Color(0xffd1d2d7);
+
+enum Pages {
+  DeliveryTime,
+  AddAddress,
+  Summary,
+}
