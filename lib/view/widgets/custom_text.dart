@@ -13,7 +13,7 @@ class CustomText extends StatelessWidget {
   final double height;
 
   CustomText({
-    this.text = '',
+    required this.text,
     this.fontSize = 16,
     this.color = Colors.black,
     this.alignment = Alignment.topLeft,
